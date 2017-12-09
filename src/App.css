@@ -1,28 +1,203 @@
-.App {
-  text-align: center;
+
+html, body {
+  height:100%;
+  margin:0;
+  background-color:#1C1C1C;
+  color:#ffffff;
+  font-family:Helvetica Neue,HelveticaNeue,HelveticaNeueRoman,HelveticaNeue-Roman,Helvetica Neue Roman,TeXGyreHerosRegular,Helvetica,Arial,sans-serif;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h2 {
+  font-weight: 300;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.blueTitle {
+  color: #00FFFF;
 }
 
-.App-title {
-  font-size: 1.5em;
+.hidden {
+  display:none
 }
 
-.App-intro {
-  font-size: large;
+.pointer {
+  cursor:pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.coverImage {
+  height: 200px;
+  width:200px;
+  box-shadow: 0px 0px 8px #000;
+}
+
+.app {
+  margin:80px;
+}
+
+.search {
+  margin-bottom: 60px;
+}
+
+.search .searchRow {
+  display:flex;
+}
+
+.search .searchRow .inputCol {
+  flex: 1;
+  margin-right: 30px;
+  display:flex;
+  flex-direction:column;
+}
+
+.search .searchRow .searchInput {
+  background: #232323;
+  padding: 25px 20px;
+  font-size: 18px;
+  flex: 1;
+  border: 0;
+  border-radius: 3px;
+  color: #8B8B8B;
+}
+
+.search .searchRow .searchInput:focus,
+.search .searchRow .searchButton:focus {
+    outline: none;
+}
+
+.search .searchRow .searchSuggestions {
+  margin-top:20px;
+  color: #8B8B8B;
+  background: #232323;
+  border-radius: 3px;
+  padding: 10px 25px;
+  position: absolute;
+  right: 80px;
+  top: 145px;
+  left: 80px;
+}
+
+.search .searchRow .searchSuggestions .closeSuggestions {
+  color: #00FFFF;
+  float:right;
+}
+
+.search .searchRow .searchSuggestions ul {
+  padding-left:0px;
+}
+
+.search .searchRow .searchSuggestions ul li {
+  list-style: none;
+  padding: 10px 0 10px 20px;
+  border-bottom: 2px solid #1C1C1C;
+}
+
+.search .searchButton {
+  background: #00FFFF;
+  font-size: 18px;
+  padding: 25px 30px;
+  border: 0;
+  border-radius:3px;
+  max-height:71px;
+}
+
+.search .searchRow .searchButton:hover {
+    opacity: .85;
+}
+
+.search .searchRow .searchButton:active {
+    position:relative;
+    top: 1px;
+}
+
+.albums {
+  margin-bottom: 30px;
+}
+
+.albums .greyLine {
+  height: 1px;
+  background-color: #232323;
+  border:0;
+}
+
+.albums .albumRow {
+  display:flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.albums .albumRow .singleAlbum {
+  width:200px;
+  flex: 0 0 auto;
+  margin:0 20px;
+  text-align:center;
+}
+
+.albums .albumRow .singleAlbum p {
+  font-size:18px;
+  font-weight: 200;
+  color: #00FFFF;
+  margin-top:10px;
+}
+
+.tracks .albumInfo {
+  display:flex;
+}
+
+.tracks .albumInfo .coverImage {
+  margin-left:20px;
+  z-index:10;
+}
+
+.tracks .albumInfo .blueTitle {
+  margin-left:30px;
+  margin-top: 10px;
+}
+
+.tracks table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  top:-100px;
+  position:relative;
+  z-index:5;
+  width:100%;
+  font-size:18px;
+}
+
+.tracks th {
+  text-align: left;
+  padding-bottom:15px;
+  font-weight:400;
+}
+
+.tracks .table__whitespace-header {
+  width: 250px;
+}
+
+.tracks .table__title-header {
+  width: 30%;
+}
+
+.tracks .table__release-header {
+  font-weight:200;
+}
+
+.tracks tbody {
+  background-color: #2A2A2A;
+}
+
+.tracks tbody tr td {
+  padding-top:15px;
+  padding-bottom:15px;
+  border:0;
+  font-weight: 200;
+}
+
+.tracks tbody tr .tableSeparator {
+  border-bottom: 1px solid #000;
+}
+
+.tracks tbody>tr:last-child td{
+  border: 0;
+  padding-bottom:50px;
 }

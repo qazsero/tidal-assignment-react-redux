@@ -1,0 +1,5 @@
+export const GET_SUGGESTIONS = 'GET_SUGGESTIONS'
+export const GET_ARTIST_INFO = 'GET_ARTIST_INFO'
+export const GET_ALBUM = 'GET_ALBUM'
+export const ADD_TRACK = 'ADD_TRACK'
+export const REMOVE_ALBUM = 'REMOVE_ALBUM'
