@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import {connect} from 'react-redux'
 
 import * as actions from '../actions'
@@ -8,18 +7,17 @@ import * as actions from '../actions'
 class Artist extends Component {
 
   render() {
-    const {artist} = this.props
+
+    //Deconstructing the artist object to get the name and albums
+    const {artistName, albums} = this.props.artist
 
     //If there aren't any albums, do not show anything
-    if(_.isEmpty(artist)) {
+    if(artistName === null) {
       return (
         <div className="albums">
         </div>
       )
     }
-
-    //Deconstructing the artist object to get the name and albums
-    const {artistName, albums} = artist
 
     return (
       <div className="albums" >

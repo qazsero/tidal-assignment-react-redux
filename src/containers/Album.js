@@ -13,7 +13,7 @@ class Album extends Component {
 
     return tracks.map((tr, index) => {
 
-      let duration = fancyTimeFormat(tr.duration)
+      let duration = tr.duration ? fancyTimeFormat(tr.duration) : '0:00'
       let release_year = tr.release_date ? tr.release_date.substr(0,4) : '0000'
 
       return (
@@ -32,7 +32,14 @@ class Album extends Component {
 
   render() {
 
-    const {album} = this.props.album
+    const {album, error} = this.props.album
+
+    //If there is an error, report it
+    if(error !== null) {
+      return (
+        <div>An error had happened. Please try again</div>
+      )
+    }
 
     //If there is no info, do not show anything
     if(_.isEmpty(album)) {

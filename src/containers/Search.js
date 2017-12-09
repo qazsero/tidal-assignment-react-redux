@@ -35,6 +35,9 @@ class Search extends Component {
 
 
   render() {
+
+    const {suggestions} = this.props.suggestions
+
     return (
       <div className="search" >
         <div className="searchRow">
@@ -46,7 +49,7 @@ class Search extends Component {
               onFocus={() => this.showSuggestions()} />
 
             <SearchSuggestions
-              suggestions={this.props.suggestions}
+              suggestions={suggestions}
               areSuggestionsFocused={this.state.areSuggestionsFocused}
               selectArtist={this.selectArtist}
               hideSuggestions={this.hideSuggestions}
