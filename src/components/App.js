@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import Search from '../containers/Search'
 import Album from '../containers/Album'
 import Artist from '../containers/Artist'
-import '../app.css'
-import '../transitions.css'
+import '../App.css'
+import '../Transitions.css'
 
 
 class App extends Component {
