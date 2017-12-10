@@ -1,17 +1,20 @@
-import {GET_ARTIST_INFO, GET_ARTIST_INFO_FAILED} from '../actions/types'
+import {GET_ARTIST_INFO, GET_ARTIST_INFO_SUCCESS, GET_ARTIST_INFO_FAIL} from '../actions/types'
 
 const initialState = {
-  error: null,
   artistName: null,
-  albums: []
+  albums: [],
+  error: null,
+  loading: false
 }
 
 export default function (state=initialState, action) {
   switch(action.type) {
     case GET_ARTIST_INFO:
-      return {artistName: action.meta, albums: action.payload.data}
-    case GET_ARTIST_INFO_FAILED:
-      return {...initialState, error: true}
+      return {...initialState, loading:true}
+    case GET_ARTIST_INFO_SUCCESS:
+      return {...state, artistName: action.meta, albums: action.payload, loading: false}
+    case GET_ARTIST_INFO_FAIL:
+      return {...initialState, error: true, loading: false}
     default:
       return state
   }

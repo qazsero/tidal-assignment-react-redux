@@ -21,7 +21,7 @@ class Album extends Component {
           <td></td>
           <td>{index+1}</td>
           <td className="tableSeparator" >{tr.title}</td>
-          <td className="tableSeparator" >{tr.artist.name}</td>
+          <td className="tableSeparator" >{tr.artistName}</td>
           <td className="tableSeparator" >{duration}</td>
           <td className="tableSeparator" >{release_year}</td>
         </tr>
@@ -32,12 +32,19 @@ class Album extends Component {
 
   render() {
 
-    const {album, error} = this.props.album
+    const {album, error, loading} = this.props.album
 
     //If there is an error, report it
     if(error !== null) {
       return (
         <div>An error had happened. Please try again</div>
+      )
+    }
+
+    //If it is loading, show a loading spinner
+    if(loading === true) {
+      return (
+        <div>Loading...</div>
       )
     }
 

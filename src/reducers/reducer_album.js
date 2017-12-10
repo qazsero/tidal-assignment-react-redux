@@ -1,21 +1,20 @@
-import {GET_ALBUM, ADD_TRACK, GET_ALBUM_FAILED, REMOVE_ALBUM} from '../actions/types'
+import {GET_ALBUM, GET_ALBUM_SUCCESS, GET_ALBUM_FAIL} from '../actions/types'
 
 const initialState = {
   album: {},
   tracks: [],
-  error: null
+  error: null,
+  loading: false
 }
 
 export default function (state=initialState, action) {
   switch(action.type) {
     case GET_ALBUM:
-      return {...state, album: action.payload}
-    case ADD_TRACK:
-      return {...state, tracks: [...state.tracks, action.payload]}
-    case GET_ALBUM_FAILED:
-      return {...state, error: true}
-    case REMOVE_ALBUM:
-      return initialState
+      return {...initialState, loading:true}
+    case GET_ALBUM_SUCCESS:
+      return {...state, album: action.payload.album, tracks:action.payload.tracks , loading: false }
+    case GET_ALBUM_FAIL:
+      return {...initialState, error: true, loading:false}
     default:
       return state
   }

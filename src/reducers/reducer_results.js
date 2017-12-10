@@ -1,4 +1,4 @@
-import {GET_SUGGESTIONS, GET_SUGGESTIONS_FAILED} from '../actions/types'
+import {GET_RESULTS_SUCCESS, GET_RESULTS_FAIL} from '../actions/types'
 
 const initialState = {
   results: [],
@@ -7,9 +7,9 @@ const initialState = {
 
 export default function (state=initialState, action) {
   switch(action.type) {
-    case GET_SUGGESTIONS:
-      return {...initialState, results: action.payload.data}
-    case GET_SUGGESTIONS_FAILED:
+    case GET_RESULTS_SUCCESS:
+      return {...initialState, results: action.payload}
+    case GET_RESULTS_FAIL:
       return {...initialState, error: true}
     default:
       return state

@@ -9,7 +9,21 @@ class Artist extends Component {
   render() {
 
     //Deconstructing the artist object to get the name and albums
-    const {artistName, albums} = this.props.artist
+    const {artistName, albums, error, loading} = this.props.artist
+
+    //If there is an error, report it
+    if(error !== null) {
+      return (
+        <div>An error had happened. Please try again</div>
+      )
+    }
+
+    //If it is loading, show a loading spinner
+    if(loading === true) {
+      return (
+        <div>Loading...</div>
+      )
+    }
 
     //If there aren't any albums, do not show anything
     if(artistName === null) {

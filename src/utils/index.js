@@ -1,9 +1,10 @@
 import fetchJsonp from 'fetch-jsonp'
 
+const ROOT_URL = 'https://api.deezer.com'
 
 //Function to make an ajax call to the deezer api that returns JSONP to avoid the CORS limitagtion
 export const fetchData = qstring => {
-  return fetchJsonp(`${qstring}&output=jsonp&callback=JSONP_CALL`, {
+  return fetchJsonp(`${ROOT_URL}${qstring}&output=jsonp&callback=JSONP_CALL`, {
     timeout: 50000,
   })
   .then(o => o.json())
