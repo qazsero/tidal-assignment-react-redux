@@ -19,7 +19,7 @@ class Album extends Component {
       return (
         <tr key={index}>
           <td></td>
-          <td>{index}</td>
+          <td>{index+1}</td>
           <td className="tableSeparator" >{tr.title}</td>
           <td className="tableSeparator" >{tr.artist.name}</td>
           <td className="tableSeparator" >{duration}</td>
