@@ -52,7 +52,7 @@ class SearchSuggestions extends Component {
 
   render() {
     return (
-      <div className={this.suggestionsClass()}>
+      <div className="searchSuggestions">
         <span className="closeSuggestions pointer" onClick={() => this.props.hideSuggestions()}>X</span>
         <p>Search results</p>
         {this.makeSuggestionList()}

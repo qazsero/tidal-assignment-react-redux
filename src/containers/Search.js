@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import * as actions from '../actions'
 import SearchSuggestions from '../components/SearchSuggestions'
@@ -45,10 +46,40 @@ class Search extends Component {
     this.props.getArtistsAlbums(artistId, artistName)
   }
 
-
-  render() {
+  SuggestionsComponent = () => {
 
     const {results} = this.props.results
+
+    if(this.state.showSuggestions) {
+      return(
+        <SearchSuggestions
+          suggestions={results}
+          visible={this.state.showSuggestions}
+          selectArtist={this.selectArtist}
+          hideSuggestions={this.hideSuggestions}
+        />
+      )
+    }
+  }
+
+  ResultsModalComponent = () => {
+
+    const {results} = this.props.results
+
+    if(this.state.showModal) {
+      return(
+        <SearchResultsModal
+          results={results}
+          searchQuery={this.state.userInput}
+          visible={this.state.showModal}
+          selectArtist={this.selectArtist}
+          hideResultsModal={this.hideResultsModal} />
+      )
+    }
+  }
+
+
+  render() {
 
     return (
       <div className="search" >
@@ -59,22 +90,21 @@ class Search extends Component {
               placeholder="Search here"
               onChange={event => this.updateSuggestions(event.target.value)}
               onFocus={() => this.showSuggestions()} />
-
-            <SearchSuggestions
-              suggestions={results}
-              visible={this.state.showSuggestions}
-              selectArtist={this.selectArtist}
-              hideSuggestions={this.hideSuggestions}
-            />
+            <CSSTransitionGroup
+              transitionName="fade"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
+              {this.SuggestionsComponent()}
+            </CSSTransitionGroup>
           </div>
           <button onClick={() => this.showResultsModal()} className="searchButton">SEARCH</button>
         </div>
-        <SearchResultsModal
-          results={results}
-          searchQuery={this.state.userInput}
-          visible={this.state.showModal}
-          selectArtist={this.selectArtist}
-          hideResultsModal={this.hideResultsModal} />
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.ResultsModalComponent()}
+        </CSSTransitionGroup>
       </div>
     );
   }
