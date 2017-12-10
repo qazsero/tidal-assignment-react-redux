@@ -12,7 +12,7 @@ export default function (state=initialState, action) {
     case GET_ALBUM:
       return {...initialState, loading:true}
     case GET_ALBUM_SUCCESS:
-      return {...state, album: action.payload.album, tracks:action.payload.tracks , loading: false }
+      return {...initialState, album: action.payload.album, tracks:action.payload.tracks , loading: false }
     case GET_ALBUM_FAIL:
       return {...initialState, error: true, loading:false}
     default:
