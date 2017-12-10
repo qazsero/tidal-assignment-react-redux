@@ -20,7 +20,7 @@ class SearchResultsModal extends Component {
         <div className="resultsContainer">
           {this.props.results.map((re, i) => (
             <div key={i} onClick={() => this.props.selectArtist(re.id, re.name)} className="resultBox">
-              <img className="coverImage pointer" src={re.picture_medium} />
+              <img className="coverImage pointer" alt="artist" src={re.picture_medium} />
               <p className="pointer">{re.name}</p>
             </div>
           ))}
