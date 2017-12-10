@@ -3,21 +3,23 @@ import {connect} from 'react-redux'
 
 import * as actions from '../actions'
 import SearchSuggestions from '../components/SearchSuggestions'
+import SearchResultsModal from '../components/SearchResultsModal'
 
 
 class Search extends Component {
   state={
     userInput:'',
-    areSuggestionsFocused: false,
+    showSuggestions: false,
+    showModal: false,
   }
 
-  //These 2 functions hide or show the box
+  //These 2 functions hide or show the suggestions box
   showSuggestions = () => {
-    this.setState({areSuggestionsFocused:true})
+    this.setState({showSuggestions:true})
   }
 
   hideSuggestions = () => {
-    this.setState({areSuggestionsFocused:false})
+    this.setState({showSuggestions:false})
   }
 
   //this searches through the API every time a user press a key
@@ -26,17 +28,27 @@ class Search extends Component {
     this.props.getSearchResults(userInput)
   }
 
+  //these 2 functions hide or show the modal with the results
+  showResultsModal = () => {
+    this.setState({showModal:true})
+  }
+
+  hideResultsModal = () => {
+    this.setState({showModal:false})
+  }
+
   //If the user clicks on an artist from the results, he (or she, or the band)
   //should be loaded
   selectArtist = (artistId, artistName) => {
     this.hideSuggestions()
+    this.hideResultsModal()
     this.props.getArtistsAlbums(artistId, artistName)
   }
 
 
   render() {
 
-    const {suggestions} = this.props.suggestions
+    const {results} = this.props.results
 
     return (
       <div className="search" >
@@ -49,22 +61,28 @@ class Search extends Component {
               onFocus={() => this.showSuggestions()} />
 
             <SearchSuggestions
-              suggestions={suggestions}
-              areSuggestionsFocused={this.state.areSuggestionsFocused}
+              suggestions={results}
+              visible={this.state.showSuggestions}
               selectArtist={this.selectArtist}
               hideSuggestions={this.hideSuggestions}
             />
           </div>
-          <button className="searchButton">SEARCH</button>
+          <button onClick={() => this.showResultsModal()} className="searchButton">SEARCH</button>
         </div>
+        <SearchResultsModal
+          results={results}
+          searchQuery={this.state.userInput}
+          visible={this.state.showModal}
+          selectArtist={this.selectArtist}
+          hideResultsModal={this.hideResultsModal} />
       </div>
     );
   }
 }
 
-function mapStateToProps({suggestions}){
+function mapStateToProps({results}){
   return {
-    suggestions
+    results
   }
 }
 

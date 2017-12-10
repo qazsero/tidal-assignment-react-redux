@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
-import SuggestionsReducer from './reducer_suggestions'
+import ResultsReducer from './reducer_results'
 import artistReducer from './reducer_artist'
 import albumReducer from './reducer_album'
 
 
 const rootReducer = combineReducers({
-  suggestions: SuggestionsReducer,
+  results: ResultsReducer,
   artist: artistReducer,
   album: albumReducer
 })

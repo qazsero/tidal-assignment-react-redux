@@ -82,6 +82,4 @@ function mapStateToProps({album}){
   }
 }
 
-//La diferencia entre contenedores y componentes es que
-//contenedores son componentes conectados con redux
 export default connect(mapStateToProps, actions)(Album)

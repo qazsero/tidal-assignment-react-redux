@@ -16,7 +16,11 @@ h2 {
 }
 
 .hidden {
-  display:none
+  display:none;
+}
+
+.clear {
+  clear: both;
 }
 
 .pointer {
@@ -100,12 +104,45 @@ h2 {
 }
 
 .search .searchRow .searchButton:hover {
-    opacity: .85;
+  opacity: .85;
 }
 
 .search .searchRow .searchButton:active {
-    position:relative;
-    top: 1px;
+  position:relative;
+  top: 1px;
+}
+
+.search .resultsModal {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:#1C1C1C;
+  margin:80px;
+}
+
+.search .resultsModal .resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search .resultsModal .ResultsTitle {
+  float:left;
+}
+
+.search .resultsModal .closeModal {
+  float:right;
+  font-size:42px;
+  color: #00FFFF;
+  margin-left:20px;
+}
+
+.search .resultsModal .resultsContainer .resultBox {
+  width:200px;
+  margin:10px;
+  text-align:center;
 }
 
 .albums {

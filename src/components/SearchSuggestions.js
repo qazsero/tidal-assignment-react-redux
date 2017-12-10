@@ -6,7 +6,7 @@ class SearchSuggestions extends Component {
   //If the user hasn't clicked on the input, hide the suggestions
   //This functions decides the css class
   suggestionsClass = () => {
-    let isHidden = this.props.areSuggestionsFocused ? '' : 'hidden'
+    let isHidden = this.props.visible ? '' : 'hidden'
     return `searchSuggestions ${isHidden}`
   }
 
