@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import * as actions from '../actions'
 
 
 class Artist extends Component {
 
-  render() {
 
-    //Deconstructing the artist object to get the name and albums
-    const {artistName, albums, error, loading} = this.props.artist
+  ErrorComponent = () => {
+    const {error} = this.props.artist
 
     //If there is an error, report it
     if(error !== null) {
@@ -17,6 +17,11 @@ class Artist extends Component {
         <div>An error had happened. Please try again</div>
       )
     }
+  }
+
+  LoadingComponent = () => {
+    const {loading} = this.props.artist
+
 
     //If it is loading, show a loading spinner
     if(loading === true) {
@@ -24,28 +29,42 @@ class Artist extends Component {
         <div>Loading...</div>
       )
     }
+  }
 
-    //If there aren't any albums, do not show anything
-    if(artistName === null) {
+  ArtistComponent = () => {
+    //Deconstructing the artist object to get the name and albums
+    const {artistName, albums} = this.props.artist
+
+    if(artistName !== null) {
       return (
-        <div className="albums">
+        <div>
+          <h2>Search results for "{artistName}"</h2>
+          <hr className="greyLine" />
+          <h2 className="blueTitle">ALBUMS</h2>
+          <div className="albumRow">
+            {albums.map(a => (
+              <div className="singleAlbum" onClick={() => this.props.getNewAlbum(a.id)} key={a.id}>
+                <img className="coverImage pointer" alt="cover" src={a.cover_medium} />
+                <p className="pointer">{a.title}</p>
+              </div>
+            ))}
+          </div>
         </div>
       )
     }
+  }
 
+  render() {
     return (
       <div className="albums" >
-        <h2>Search results for "{artistName}"</h2>
-        <hr className="greyLine" />
-        <h2 className="blueTitle">ALBUMS</h2>
-        <div className="albumRow">
-          {albums.map(a => (
-            <div className="singleAlbum" onClick={() => this.props.getNewAlbum(a.id)} key={a.id}>
-              <img className="coverImage pointer" alt="cover" src={a.cover_medium} />
-              <p className="pointer">{a.title}</p>
-            </div>
-          ))}
-        </div>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={200}>
+          {this.LoadingComponent()}
+          {this.ErrorComponent()}
+          {this.ArtistComponent()}
+        </CSSTransitionGroup>
       </div>
     );
   }

@@ -92,8 +92,8 @@ class Search extends Component {
               onFocus={() => this.showSuggestions()} />
             <CSSTransitionGroup
               transitionName="fade"
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
+              transitionEnterTimeout={400}
+              transitionLeaveTimeout={200}>
               {this.SuggestionsComponent()}
             </CSSTransitionGroup>
           </div>
@@ -101,8 +101,8 @@ class Search extends Component {
         </div>
         <CSSTransitionGroup
           transitionName="fade"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={200}>
           {this.ResultsModalComponent()}
         </CSSTransitionGroup>
       </div>

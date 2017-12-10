@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import {connect} from 'react-redux'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import * as actions from '../actions'
 import {fancyTimeFormat} from '../utils'
@@ -29,10 +30,8 @@ class Album extends Component {
     })
   }
 
-
-  render() {
-
-    const {album, error, loading} = this.props.album
+  ErrorComponent = () => {
+    const {error} = this.props.album
 
     //If there is an error, report it
     if(error !== null) {
@@ -40,6 +39,11 @@ class Album extends Component {
         <div>An error had happened. Please try again</div>
       )
     }
+  }
+
+  LoadingComponent = () => {
+    const {loading} = this.props.album
+
 
     //If it is loading, show a loading spinner
     if(loading === true) {
@@ -47,37 +51,54 @@ class Album extends Component {
         <div>Loading...</div>
       )
     }
+  }
+
+  AlbumComponent = () => {
+    const {album, error, loading} = this.props.album
 
     //If there is no info, do not show anything
-    if(_.isEmpty(album)) {
+    if(!_.isEmpty(album)) {
       return (
-        <div></div>
+        <div>
+          <div className="albumInfo">
+            <img className="coverImage" alt="cover-main" src={album.cover_medium} />
+            <h2 className="blueTitle" >{album.title}</h2>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th className="table__whitespace-header"></th>
+                <th className="table__number-header">#</th>
+                <th className="table__title-header">Title</th>
+                <th className="table__artist-header">Artist</th>
+                <th className="table__time-header">Time</th>
+                <th className="table__release-header">Released</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderTrackList()}
+            </tbody>
+
+          </table>
+        </div>
       )
     }
+  }
+
+
+  render() {
 
     return (
       <div className="tracks" >
-        <div className="albumInfo">
-          <img className="coverImage" alt="cover-main" src={album.cover_medium} />
-          <h2 className="blueTitle" >{album.title}</h2>
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th className="table__whitespace-header"></th>
-              <th className="table__number-header">#</th>
-              <th className="table__title-header">Title</th>
-              <th className="table__artist-header">Artist</th>
-              <th className="table__time-header">Time</th>
-              <th className="table__release-header">Released</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderTrackList()}
-          </tbody>
-
-        </table>
+        <CSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={200}>
+          {this.LoadingComponent()}
+          {this.ErrorComponent()}
+          {this.AlbumComponent()}
+        </CSSTransitionGroup>
       </div>
     );
   }
