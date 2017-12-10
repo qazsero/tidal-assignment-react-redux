@@ -12,9 +12,9 @@ export default function (state=initialState, action) {
     case GET_ARTIST_INFO:
       return {...initialState, loading:true}
     case GET_ARTIST_INFO_SUCCESS:
-      return {...state, artistName: action.meta, albums: action.payload, loading: false}
+      return {...initialState, artistName: action.meta, albums: action.payload}
     case GET_ARTIST_INFO_FAIL:
-      return {...initialState, error: true, loading: false}
+      return {...initialState, error: true}
     default:
       return state
   }

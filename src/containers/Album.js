@@ -54,7 +54,7 @@ class Album extends Component {
   }
 
   AlbumComponent = () => {
-    const {album, error, loading} = this.props.album
+    const {album} = this.props.album
 
     //If there is no info, do not show anything
     if(!_.isEmpty(album)) {
